@@ -3,16 +3,19 @@ package com.example.paypark.views
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.example.paypark.R
 import com.example.paypark.utils.DataValidations
+import com.example.paypark.viewmodels.UserViewModel
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
     val TAG : String = this@SignInActivity.toString()
     lateinit var tvCreateAccount: TextView
+    lateinit var userViewModel : UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +25,9 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         tvCreateAccount.setOnClickListener(this)
 
         btnSignIn.setOnClickListener(this)
+
+        userViewModel = UserViewModel(this.application)
+        this.fetchAllUsers()
     }
 
     override fun onClick(v: View?) {
@@ -78,5 +84,14 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
     private fun goToSignUp(){
         val signUpIntent = Intent(this, SignUpActivity::class.java)
         startActivity(signUpIntent)
+    }
+
+    private fun fetchAllUsers(){
+        userViewModel.allUsers.observe(this@SignInActivity, {users ->
+            for (user in users){
+                Log.d(TAG, user.toString())
+            }
+
+        })
     }
 }

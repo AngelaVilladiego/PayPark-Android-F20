@@ -14,7 +14,9 @@ import androidx.fragment.app.DialogFragment
 import com.example.paypark.R
 import com.example.paypark.model.User
 import com.example.paypark.utils.DataValidations
+import com.example.paypark.viewmodels.UserViewModel
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -92,6 +94,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                     //gather all the data and create object of User class
                     if (this.validateData()) {
                         this.fetchData()
+                        this.saveUserToDB()
                         this.goToMain()
                     }
                 }
@@ -103,6 +106,16 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                     dpFragment.show(supportFragmentManager, "datepicker")
                 }
             }
+        }
+    }
+
+    fun saveUserToDB() {
+        try{
+            var userViewModel = UserViewModel(this.application)
+            userViewModel.insertAll(user)
+        }catch (ex: Exception){
+            Log.e(TAG, ex.toString())
+            Log.e(TAG, ex.localizedMessage)
         }
     }
 
