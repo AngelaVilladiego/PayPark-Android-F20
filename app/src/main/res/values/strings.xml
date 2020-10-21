@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">PayPark</string>
+    <string name="database_name" translatable="false">com_example_paypark_database</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="create_account">Create Account</string>
+
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="phone">Phone Number</string>
+    <string name="car_plate_num">Car Plate Number</string>
+    <string name="name_on_card">Name On Card</string>
+    <string name="payment_info">Payment Information</string>
+    <string name="card_number">Card Number</string>
+    <string name="card_number_placeholder">XXXX-XXXX-XXXX-XXXX</string>
+    <string name="cvv">CVV</string>
+    <string name="cvv_placeholder">XXX</string>
+    <string name="expiry">Expiry Date</string>
+    <string name="expiry_placeholder">MM/YY</string>
+    <string name="save">Save</string>
+
+    <string name="gender">Gender</string>
+
+    <string-array name="gender_array">
+        <item>Female</item>
+        <item>Male</item>
+        <item>No Disclosure</item>
+    </string-array>
+
+    <string name="error_empty_password">Password cannot be empty</string>
+</resources>
