@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.example.paypark.R
 import com.example.paypark.utils.DataValidations
 import com.example.paypark.viewmodels.UserViewModel
@@ -64,11 +65,26 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun validateUser(){
 
-        if (edtEmail.text.toString().equals("test@sh.ca")
-            && edtPassword.text.toString().equals("test123")){
+//        if (edtEmail.text.toString().equals("test@sh.ca")
+//            && edtPassword.text.toString().equals("test123")){
+//
+//            this.goToMain()
+//        }
 
-            this.goToMain()
-        }
+        val email = edtEmail.text.toString()
+        val password = DataValidations().encryptPassword(edtPassword.text.toString())
+
+        userViewModel.getUserByLoginInfo(email, password)?.observe(this@SignInActivity, {matchedUser ->
+            if (matchedUser != null) {
+                //valid login
+
+                this@SignInActivity.finishAndRemoveTask()
+                this.goToMain()
+            } else {
+                //invalid login
+                Toast.makeText(this, "Incorrect Login/Password. Try again!", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun goToMain(){
@@ -92,6 +108,8 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                 Log.d(TAG, user.toString())
             }
 
+            //show data in UI
+            //
         })
     }
 }
