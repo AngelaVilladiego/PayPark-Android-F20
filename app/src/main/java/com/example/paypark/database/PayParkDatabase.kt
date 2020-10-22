@@ -36,7 +36,11 @@ abstract class PayParkDatabase: RoomDatabase() {
                     context.applicationContext,
                     PayParkDatabase::class.java,
                     R.string.database_name.toString()
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                        //destroys older version of db and recreates db with new config provided through model class
+                        //make sure that after significant changes in model class you have updated version number or DB
+                    .build()
 
                 INSTANCE = instance
                 return instance

@@ -49,4 +49,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_user_manual">User Manual</string>
+    <string name="menu_support">Support</string>
+    <string name="call">Call</string>
 </resources>
