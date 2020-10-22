@@ -65,7 +65,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         matchedUser?.postValue(user)
     }
 
-    fun getUserByEamil(email: String) : MutableLiveData<User>? {
+    fun getUserByEmail(email: String) : MutableLiveData<User>? {
         getUserByEmailCoroutine(email)
 
         Log.d("UserViewModel : ", matchedUser.toString())

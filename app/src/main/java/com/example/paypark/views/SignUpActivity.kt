@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import com.example.paypark.R
+import com.example.paypark.managers.SharedPreferencesManager
 import com.example.paypark.model.User
 import com.example.paypark.utils.DataValidations
 import com.example.paypark.viewmodels.UserViewModel
@@ -95,6 +96,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                     if (this.validateData()) {
                         this.fetchData()
                         this.saveUserToDB()
+
+                        SharedPreferencesManager.write(SharedPreferencesManager.EMAIL, edtEmail.text.toString())
+
                         this.goToMain()
                     }
                 }
@@ -138,8 +142,10 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
     fun goToMain(){
         //open MainActivity and pass the user object
-        val mainIntent = Intent(this, MainActivity::class.java)
-        startActivity(mainIntent)
+//        val mainIntent = Intent(this, MainActivity::class.java)
+//        startActivity(mainIntent)
+        val homeIntent = Intent(this, HomeActivity::class.java)
+        startActivity(homeIntent)
 
         //remove the SignUpActivity from teh activity stack
         this@SignUpActivity.finishAffinity()

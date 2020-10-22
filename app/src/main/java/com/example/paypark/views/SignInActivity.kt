@@ -99,20 +99,23 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun checkRemember() {
+        SharedPreferencesManager.write(SharedPreferencesManager.EMAIL, edtEmail.text.toString())
         if (swtRemember.isChecked) {
             //save the credentials in shared preferences
-            SharedPreferencesManager.write(SharedPreferencesManager.EMAIL, edtEmail.text.toString())
             SharedPreferencesManager.write(SharedPreferencesManager.PASSWORD, edtPassword.text.toString())
         } else {
             //remove the credentials from shared preferences
-            SharedPreferencesManager.remove(SharedPreferencesManager.EMAIL)
+            //SharedPreferencesManager.remove(SharedPreferencesManager.EMAIL)
             SharedPreferencesManager.remove(SharedPreferencesManager.PASSWORD)
         }
     }
 
     private fun goToMain(){
-        val mainIntent = Intent(this, MainActivity::class.java)
-        startActivity(mainIntent)
+//        val mainIntent = Intent(this, MainActivity::class.java)
+//        startActivity(mainIntent)
+
+        val homeIntent = Intent(this, HomeActivity::class.java)
+        startActivity(homeIntent)
 
         //to not allow user to go back to SignInActivity when they press back button on MainActivity
         //finishAffinity() will remove current activity from Activity Stack
